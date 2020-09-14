@@ -12,7 +12,7 @@ import CreateCourse from './components/CreateCourse';
 import UpdateCourse from './components/UpdateCourse';
 import Header from './components/Header';
 //import Public from './components/Public';
-//import NotFound from './components/NotFound';
+import NotFound from './components/NotFound';
 import UserSignUp from './components/UserSignUp';
 import UserSignIn from './components/UserSignIn';
 import UserSignOut from './components/UserSignOut';
@@ -32,7 +32,7 @@ const HeaderWithContext = withContext(Header);
 const CourseDetailWithContext = withContext(CourseDetail);
 const CoursesWithContext = withContext(Courses);
 const CreateCourseWithContext = withContext(CreateCourse);
-const UpdateCourseWithContext = withContext(CreateCourse);
+const UpdateCourseWithContext = withContext(UpdateCourse);
 
 // Connect UserSignUp to context
 const UserSignUpWithContext = withContext(UserSignUp);
@@ -43,19 +43,22 @@ const UserSignOutWithContext = withContext(UserSignOut);
 
 export default () => (
   <Router>
-    {/* <div>
+    <div>
       <HeaderWithContext />
 
       <Switch>
-        <Route exact path="/" component={Public} />
-        <PrivateRoute path="/authenticated" component={AuthWithContext} />
-        <PrivateRoute path="/settings" component={AuthWithContext} />
+        <Route exact path="/" component={CoursesWithContext} />
+        <Route exact path="/courses/create" component={CreateCourseWithContext} />
+        <Route exact path="/courses/:id/update" component={UpdateCourseWithContext} />
+        <Route exact path="/courses/:id" component={CourseDetailWithContext} />
+        {/* <PrivateRoute path="/authenticated" component={AuthWithContext} /> */}
+        {/* <PrivateRoute path="/settings" component={AuthWithContext} /> */}
         <Route path="/signin" component={UserSignInWithContext} />
         <Route path="/signup" component={UserSignUpWithContext} />
         <Route path="/signout" component={UserSignOutWithContext} />
-        <Route component={NotFound} />
+        <Route component={NotFound} /> */}
       </Switch>
-    </div> */}
+    </div>
   </Router>
 );
 

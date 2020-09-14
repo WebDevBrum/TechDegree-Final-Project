@@ -4,7 +4,7 @@ export default class UserSignOut extends Component {
 
   render() {
     return (
-      <h1>This is just a test</h1>
+      <h1>This is just a signOut test</h1>
     );
   }
 }
