@@ -13,6 +13,7 @@ import UpdateCourse from './components/UpdateCourse';
 import Header from './components/Header';
 //import Public from './components/Public';
 import NotFound from './components/NotFound';
+import Forbidden from './components/Forbidden';
 import UserSignUp from './components/UserSignUp';
 import UserSignIn from './components/UserSignIn';
 import UserSignOut from './components/UserSignOut';

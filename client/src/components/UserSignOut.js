@@ -8,3 +8,5 @@ export default class UserSignOut extends Component {
     );
   }
 }
+
+//SEE AUTHENTICATION COURSE
