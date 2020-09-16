@@ -4,9 +4,17 @@ import { Link } from 'react-router-dom';
 
 export default class CourseDetail extends Component {
 
+  // constructor(props) {
+  //   super(props);
+
+  // }
+
+
+
   state = {
     course: "",
-    creator: ""
+    creator: "",
+
   }
 
   //this method is best to make api calls
@@ -21,6 +29,21 @@ export default class CourseDetail extends Component {
 
   }
 
+
+  // deleteCourse() {
+
+  // const context = this.props.context; //props undefined?
+  // console.log('estbutton');
+  // context.data.deleteCourse(this.state.course.id)
+
+  // }
+
+  deleteCourse = () => {
+    console.log(this.props)
+    const context = this.props.context;
+    console.log('estbutton');
+    context.data.deleteCourse(this.state.course.id)
+  }
   render() {
     const { title, description, materialsNeeded, estimatedTime, } = this.state.course;
 
@@ -28,12 +51,11 @@ export default class CourseDetail extends Component {
 
     const name = "by " + firstName + " " + lastName;
 
-
     return (
       <div>
         <div className="actions--bar">
           <div className="bounds">
-            <div className="grid-100"><span><Link className="button" to={`${this.props.match.params.id}/update`}>Update Course</Link><Link className="button" to="/">Delete Course</Link></span><Link
+            <div className="grid-100"><span><Link className="button" to={`${this.props.match.params.id}/update`}>Update Course</Link><Link className="button" onClick={this.deleteCourse} to="/">Delete Course</Link></span><Link
               className="button button-secondary" to="/">Return to List</Link></div>
           </div>
         </div>
