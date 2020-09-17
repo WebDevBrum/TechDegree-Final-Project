@@ -89,18 +89,18 @@ router.get('/users', authenticateUser, asyncHandler(async (req, res) => {
 //  POST /api/users 201 - Creates a user, sets the Location header to "/", and returns no content
 router.post('/users', [
   check('firstName')
-    .exists()
+    .exists({ checkNull: true, checkFalsy: true })
     .withMessage('Please provide a value for "firstName"'),
   check('lastName')
-    .exists()
+    .exists({ checkNull: true, checkFalsy: true })
     .withMessage('Please provide a value for "lastName"'),
   check('emailAddress')
-    .exists()
+    .exists({ checkNull: true, checkFalsy: true })
     .withMessage('Please provide a value for "emailAddress"')
     .isEmail()
     .withMessage('Please provide a valid email address for "emailAddress"'),
   check('password')
-    .exists()
+    .exists({ checkNull: true, checkFalsy: true })
     .withMessage('Please provide a value for "password"'),
 ], asyncHandler(async (req, res) => {
   const errors = validationResult(req);
@@ -150,10 +150,10 @@ router.get('/courses/:id', asyncHandler(async (req, res) => {
 and returns no content */
 router.post('/courses', authenticateUser, [
   check('title')
-    .exists()
+    .exists({ checkNull: true, checkFalsy: true })
     .withMessage('Please provide a value for "title"'),
   check('description')
-    .exists()
+    .exists({ checkNull: true, checkFalsy: true })
     .withMessage('Please provide a value for "description"'),
 ], asyncHandler(async (req, res) => {
   const errors = validationResult(req);
@@ -173,10 +173,10 @@ router.post('/courses', authenticateUser, [
 // PUT /api/courses/:id 204 - Updates a course and returns no content
 router.put('/courses/:id', authenticateUser, [
   check('title')
-    .exists()
+    .exists({ checkNull: true, checkFalsy: true })
     .withMessage('Please provide a value for "title"'),
   check('description')
-    .exists()
+    .exists({ checkNull: true, checkFalsy: true })
     .withMessage('Please provide a value for "description"'),
 ], asyncHandler(async (req, res) => {
   const errors = validationResult(req);
