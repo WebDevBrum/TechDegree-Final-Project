@@ -3,6 +3,14 @@ import React, { Component } from 'react';
 export default class UpdateCourse extends Component {
 
   render() {
+
+    const { context } = this.props;
+    const authUser = context.authenticatedUser;
+    console.log(authUser);
+
+
+
+
     return (
       <div className="bounds course--detail">
         <h1>Update Course</h1>

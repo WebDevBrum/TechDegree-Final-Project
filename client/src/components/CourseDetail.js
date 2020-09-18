@@ -51,6 +51,10 @@ export default class CourseDetail extends Component {
 
     const name = "by " + firstName + " " + lastName;
 
+    const { context } = this.props;
+    const authUser = context.authenticatedUser;
+    console.log(authUser);
+
     return (
       <div>
         <div className="actions--bar">
