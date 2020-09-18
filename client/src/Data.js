@@ -64,6 +64,7 @@ export default class Data {
 
   async getUser(emailAddress, password) {
     const response = await this.api(`/users`, 'GET', null, true, { emailAddress, password });
+    console.log(response);
     if (response.status === 200) {
       return response.json().then(data => data);
     }
@@ -71,8 +72,10 @@ export default class Data {
       return null;
     }
     else {
+
       throw new Error();
     }
+
   }
 
   async createUser(user) {

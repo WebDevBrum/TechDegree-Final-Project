@@ -99,16 +99,6 @@ export default class UserSignUp extends Component {
 
   submit = () => {
 
-
-
-
-
-
-
-
-
-
-
     const { context } = this.props;
 
     const {
@@ -127,18 +117,24 @@ export default class UserSignUp extends Component {
       password,
 
     };
-    context.data.createUser(user)
-      .then(errors => {
-        if (errors.length) {
-          this.setState({ errors });
-        } else {
-          console.log(`${emailAddress} is successfully signed up and authenticated!`);
-        }
-      })
-      .catch(err => { // handle rejected promises
-        console.log(err);
-        this.props.history.push('/error'); // push to history stack
-      });
+
+    if (password === confirmPassword) {
+      context.data.createUser(user)
+        .then(errors => {
+          if (errors.length) {
+            this.setState({ errors });
+          } else {
+            console.log(`${emailAddress} is successfully signed up and authenticated!`);
+          }
+        })
+        .catch(err => { // handle rejected promises
+          console.log(err);
+          this.props.history.push('/error'); // push to history stack
+        });
+    } else {
+      this.setState({ errors: ["Please check that your passwords match"] });
+      console.log(this.state.errors);
+    }
   }
 
   cancel = () => {

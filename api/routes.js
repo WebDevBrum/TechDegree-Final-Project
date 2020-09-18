@@ -28,7 +28,7 @@ function asyncHandler(cb) {
 
 async function authenticateUser(req, res, next) {
   let message = null;
-
+  let user;
   // Parse the user's credentials from the Authorization header.
   const credentials = auth(req);
   // If the user's credentials are available...
@@ -36,9 +36,9 @@ async function authenticateUser(req, res, next) {
   // Attempt to retrieve the user from the data store
   // by their email address (i.e. the user's "key"
   // from the Authorization header).
-    let user = await User.findAll({ where: { emailAddress: credentials.name } });
+    user = await User.findAll({ where: { emailAddress: credentials.name } });
     // If a user was successfully retrieved from the data store...
-    if (user) {
+    if (user[0] !== undefined) {
       user = user[0];
       // Use the bcryptjs npm package to compare the user's password
       // (from the Authorization header) to the user's password
