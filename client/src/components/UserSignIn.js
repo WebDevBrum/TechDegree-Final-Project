@@ -11,12 +11,7 @@ export default class UserSignIn extends Component {
     errors: [],
   }
 
-
-
-
   render() {
-
-
 
     const {
       emailAddress,
@@ -28,7 +23,6 @@ export default class UserSignIn extends Component {
       <div className="bounds">
         <div className="grid-33 centered signin">
           <h1>Sign In</h1>
-
           <Form
             cancel={this.cancel}
             errors={errors}
@@ -43,7 +37,6 @@ export default class UserSignIn extends Component {
                   value={emailAddress}
                   onChange={this.change}
                   placeholder="Email Address"
-
                 />
                 <input
                   id="password"
@@ -53,18 +46,11 @@ export default class UserSignIn extends Component {
                   onChange={this.change}
                   placeholder="Password"
                 />
-
-
-
               </React.Fragment>
             )} />
-
-
-
           <p>Don't have a user account? <Link to="/signup">Click here</Link> to sign up!</p>
         </div>
       </div>
-
     );
   }
 
@@ -79,17 +65,12 @@ export default class UserSignIn extends Component {
     });
   }
 
-
-
-
   submit = () => {
-
     const { context } = this.props;
     const { from } = this.props.location.state || { from: { pathname: '/' } }
     const { emailAddress, password } = this.state;
     context.actions.signIn(emailAddress, password)
       .then(user => {
-
         if (user === null) {
           this.setState(() => {
             return { errors: ['Sign-in was unsuccessful'] };
@@ -108,5 +89,4 @@ export default class UserSignIn extends Component {
   cancel = () => {
     this.props.history.push('/');
   }
-
 }

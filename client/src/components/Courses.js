@@ -8,7 +8,7 @@ export default class Courses extends Component {
     courses: []
   }
 
-  //this method is best to make api calls
+  /*Calls getCourses to obtain details on the course list, this method is best to make api calls*/
   componentDidMount() {
     const { context } = this.props;
     context.data.getCourses()

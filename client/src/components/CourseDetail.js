@@ -4,79 +4,71 @@ import { Link } from 'react-router-dom';
 
 export default class CourseDetail extends Component {
 
-  // constructor(props) {
-  //   super(props);
-
-  // }
-
-
-
   state = {
     course: "",
     creator: "",
 
+    id: ""
   }
 
-  //this method is best to make api calls
+  /*Calls courseDetail to obtain details on the course, this method is best to make api calls*/
   componentDidMount() {
     const { context } = this.props;
+
     context.data.courseDetail(this.props.match.params.id)
       .then((data) => {
         if (data === null) {
-          this.props.history.push('/error');
+          this.props.history.push('/notfound');
         } else {
-          this.setState({ course: data, creator: data.creator }, () => console.log(this.state.course))
+          this.setState({ course: data, creator: data.creator, id: data.id }, () => console.log(this.state.id))
         }
       }
       );
-    // ISSUE WITH SET STATE
-
-
   }
 
-
-  // deleteCourse() {
-
-  // const context = this.props.context; //props undefined?
-  // console.log('estbutton');
-  // context.data.deleteCourse(this.state.course.id)
-
-  // }
 
   deleteCourse = () => {
-    console.log(this.props)
-    const context = this.props.context;
-    console.log('estbutton');
-    context.data.deleteCourse(this.state.course.id)
+    const { context } = this.props;
+    const { emailAddress, password } = context.authenticatedUser;
+    const { id } = this.state;
+    context.data.deleteCourse(id, emailAddress, password)
+      .then(errors => {
+        if (errors.length) {
+          this.setState({ errors });
+          window.scrollTo(0, 0);
+        } else {
+          window.location.href = "/";
+        }
+      })
+      .catch(err => { // handle rejected promises
+        console.log(err);
+        this.props.history.push('/error'); // push to history stack
+      });
   }
+
+
   render() {
+    const { context } = this.props;
+    const authUser = context.authenticatedUser;
+    let authId = 0;
+
     const { title, description, materialsNeeded, estimatedTime, } = this.state.course;
 
-    const { id } = this.state.creator;
-
-    const { firstName, lastName } = this.state.creator;
+    const { id, firstName, lastName } = this.state.creator;
 
     const name = "by " + firstName + " " + lastName;
 
-    const { context } = this.props;
-    const authUser = context.authenticatedUser;
-    console.log(authUser); // may not require this
-    console.log(id);
 
-    let authId = 0;
 
+    /*for comparion of the course user with the current authorised user. We then render buttons based on level of access */
     if (authUser !== null) {
       authId = authUser.id;
     }
-
     return (
       <div>
-
         <div className="actions--bar">
           <div className="bounds">
-
             <div className="grid-100">
-
               {authId === id ?
                 <React.Fragment>
                   <span><Link className="button" to={`${this.props.match.params.id}/update`}>Update Course</Link>
@@ -93,7 +85,6 @@ export default class CourseDetail extends Component {
             </div>
           </div>
         </div>
-
         <div className="bounds course--detail">
           <div className="grid-66">
             <div className="course--header">
@@ -102,9 +93,7 @@ export default class CourseDetail extends Component {
               <p>{name}</p>
             </div>
             <div className="course--description">
-
               <ReactMarkdown source={description} />
-
             </div>
           </div>
           <div className="grid-25 grid-right">

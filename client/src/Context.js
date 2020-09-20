@@ -10,7 +10,6 @@ export class Provider extends Component {
     authenticatedUser: Cookies.getJSON('authenticatedUser') || null
   };
 
-
   constructor() {
     super();
     this.data = new Data();
@@ -18,7 +17,6 @@ export class Provider extends Component {
 
   render() {
     const { authenticatedUser } = this.state;
-
 
     const value = {
       authenticatedUser,
@@ -29,10 +27,6 @@ export class Provider extends Component {
       }
     };
 
-
-
-
-
     return (
       <Context.Provider value={value} >
         {this.props.children}
@@ -40,6 +34,7 @@ export class Provider extends Component {
     );
   }
 
+  //Enables user sign in via api getUser 
   signIn = async (emailAddress, password) => {
 
     const user = await this.data.getUser(emailAddress, password);
@@ -53,10 +48,10 @@ export class Provider extends Component {
       // Set cookie
       Cookies.set('authenticatedUser', JSON.stringify(user), { expires: 1 });
     }
-
     return user;
   }
 
+  //Signs out the user and removes user state and cookie
   signOut = () => {
     this.setState(() => {
       return {
@@ -67,12 +62,7 @@ export class Provider extends Component {
   }
 }
 
-
-
-
-
 export const Consumer = Context.Consumer;
-
 
 /**
  * A higher-order component that wraps the provided component in a Context Consumer component.
