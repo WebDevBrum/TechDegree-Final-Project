@@ -21,8 +21,13 @@ export default class CourseDetail extends Component {
   componentDidMount() {
     const { context } = this.props;
     context.data.courseDetail(this.props.match.params.id)
-      .then((data) =>
-        this.setState({ course: data, creator: data.creator }, () => console.log(this.state.course))
+      .then((data) => {
+        if (data === null) {
+          this.props.history.push('/error');
+        } else {
+          this.setState({ course: data, creator: data.creator }, () => console.log(this.state.course))
+        }
+      }
       );
     // ISSUE WITH SET STATE
 
@@ -47,6 +52,8 @@ export default class CourseDetail extends Component {
   render() {
     const { title, description, materialsNeeded, estimatedTime, } = this.state.course;
 
+    const { id } = this.state.creator;
+
     const { firstName, lastName } = this.state.creator;
 
     const name = "by " + firstName + " " + lastName;
@@ -54,15 +61,39 @@ export default class CourseDetail extends Component {
     const { context } = this.props;
     const authUser = context.authenticatedUser;
     console.log(authUser); // may not require this
+    console.log(id);
+
+    let authId = 0;
+
+    if (authUser !== null) {
+      authId = authUser.id;
+    }
 
     return (
       <div>
+
         <div className="actions--bar">
           <div className="bounds">
-            <div className="grid-100"><span><Link className="button" to={`${this.props.match.params.id}/update`}>Update Course</Link><Link className="button" onClick={this.deleteCourse} to="/">Delete Course</Link></span><Link
-              className="button button-secondary" to="/">Return to List</Link></div>
+
+            <div className="grid-100">
+
+              {authId === id ?
+                <React.Fragment>
+                  <span><Link className="button" to={`${this.props.match.params.id}/update`}>Update Course</Link>
+                    <Link className="button" onClick={this.deleteCourse} to="/">Delete Course</Link></span>
+                  <Link
+                    className="button button-secondary" to="/">Return to List</Link>
+                </React.Fragment>
+                :
+                <React.Fragment>
+                  <Link
+                    className="button button-secondary" to="/">Return to List</Link>
+                </React.Fragment>
+              }
+            </div>
           </div>
         </div>
+
         <div className="bounds course--detail">
           <div className="grid-66">
             <div className="course--header">

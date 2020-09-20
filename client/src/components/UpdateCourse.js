@@ -171,10 +171,10 @@ export default class UpdateCourse extends Component {
 
   cancel = (event) => {
     event.preventDefault();
-    console.log(this.state.course.id);
+    console.log(this.state.id);
 
 
-    const location = `/courses/${this.state.course.id}`
+    const location = `/courses/${this.state.id}`
     this.props.history.push(location);
   }
 

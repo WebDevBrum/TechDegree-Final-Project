@@ -143,7 +143,11 @@ router.get('/courses/:id', asyncHandler(async (req, res) => {
       attributes: ['id', 'firstName', 'lastName', 'emailAddress'],
     },
   });
-  res.status(200).json(course);
+  if (course) {
+    res.status(200).json(course);
+  } else {
+    res.status(404).json({ message: 'Not Found' });
+  }
 }));
 
 /*  POST /api/courses 201 - Creates a course, sets the Location header to the URI for the course,
