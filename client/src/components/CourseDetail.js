@@ -53,7 +53,7 @@ export default class CourseDetail extends Component {
 
     const { context } = this.props;
     const authUser = context.authenticatedUser;
-    console.log(authUser);
+    console.log(authUser); // may not require this
 
     return (
       <div>

@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 
-export default class UserSignOut extends Component {
+export default ({ context }) => {
 
-  render() {
-    return (
-      <h1>This is just a signOut test</h1>
-    );
-  }
+
+  useEffect(() => context.actions.signOut());
+  return (
+    <Redirect to="/" />
+  );
 }
-
-//SEE AUTHENTICATION COURSE

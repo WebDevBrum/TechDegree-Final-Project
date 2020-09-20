@@ -58,8 +58,21 @@ export default class Data {
 
   }
 
-  async updateCourse() {
+  async updateCourse(id, course, emailAddress, password) {
+    console.log(`the course id is ${id}`)
+    console.log(emailAddress)
+    console.log(password);
+    const response = await this.api(`/courses/${id}`, 'PUT', course, true, { emailAddress, password });
 
+    if (response.status === 204) {
+      return [];
+    } else if (response.status === 400) {
+      return response.json().then(data => {
+        return data.errors;
+      });
+    } else {
+      throw new Error();
+    }
   }
 
   async getUser(emailAddress, password) {
