@@ -54,6 +54,10 @@ export default class UserSignIn extends Component {
     );
   }
 
+  /**
+   * Listener for form value changes 
+   * This then updates component state accordingly.
+   */
   change = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -65,6 +69,10 @@ export default class UserSignIn extends Component {
     });
   }
 
+  /**
+   * Submits the form with bundled data from state and
+   * passes the data to context.signin for authentication.
+   */
   submit = () => {
     const { context } = this.props;
     const { from } = this.props.location.state || { from: { pathname: '/' } }
@@ -86,6 +94,9 @@ export default class UserSignIn extends Component {
       })
   }
 
+  /**
+   * Cancels course update and returns to the main page.
+   */
   cancel = () => {
     this.props.history.push('/');
   }

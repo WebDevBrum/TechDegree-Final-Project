@@ -11,7 +11,9 @@ export default class CourseDetail extends Component {
     id: ""
   }
 
-  /*Calls courseDetail to obtain details on the course, this method is best to make api calls*/
+  /**
+   * Calls courseDetail to obtain details on the course, this method is best to make api calls
+   * */
   componentDidMount() {
     const { context } = this.props;
 
@@ -26,6 +28,9 @@ export default class CourseDetail extends Component {
       );
   }
 
+  /**
+   *Calls deleteCourse to remove remove the given course if authenticated 
+   */
 
   deleteCourse = () => {
     const { context } = this.props;
@@ -60,7 +65,9 @@ export default class CourseDetail extends Component {
 
 
 
-    /*for comparion of the course user with the current authorised user. We then render buttons based on level of access */
+    /**
+     * for comparion of the course user with the current authorised user. We then render buttons based on level of access 
+     */
     if (authUser !== null) {
       authId = authUser.id;
     }

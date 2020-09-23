@@ -1,8 +1,17 @@
 # TechDegree-Final-Project
 
-Open a terminal or command window and start thr REST API application.
+Getting started
+
+Open a terminal or command window and start the REST API application.
+
+First install the project dependencies with 
+
+npm install
 
 Browse to the api folder and run the command npm start.
+
+npm start
+To test the Express server, browse to the URL http://localhost:5000/.
 
 Once you've started the REST API application, you can typically just leave the app running in the background.
 

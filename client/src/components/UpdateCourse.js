@@ -90,6 +90,11 @@ export default class UpdateCourse extends Component {
     );
   }
 
+
+  /**
+   * Listener for form value changes 
+   * This then updates component state accordingly.
+   */
   change = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -101,6 +106,10 @@ export default class UpdateCourse extends Component {
     });
   }
 
+  /**
+   * Submits the form with bundled data from state and
+   * passes the data to updateCourse to update the database.
+   */
   submit = (event) => {
     event.preventDefault();
     const { context } = this.props;
@@ -115,6 +124,7 @@ export default class UpdateCourse extends Component {
     const course = {
       id, title, description, estimatedTime, materialsNeeded, userId
     };
+
     /*Updates a course when valid info provided, info passed to api and course updated on database*/
     context.data.updateCourse(id, course, emailAddress, password)
       .then(errors => {
@@ -130,6 +140,9 @@ export default class UpdateCourse extends Component {
       });
   }
 
+  /**
+   * Cancels course update and returns to the main page.
+   */
   cancel = (event) => {
     event.preventDefault();
     const location = `/courses/${this.state.id}`

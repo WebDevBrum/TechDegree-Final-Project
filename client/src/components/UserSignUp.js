@@ -78,6 +78,11 @@ export default class UserSignUp extends Component {
     );
   }
 
+
+  /**
+   * Listener for form value changes 
+   * This then updates component state accordingly.
+   */
   change = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -89,6 +94,10 @@ export default class UserSignUp extends Component {
     });
   }
 
+  /**
+   * Submits the form with bundled data from state and
+   * passes the data to sigup for addition of the user to the database.
+   */
   submit = () => {
     const { context } = this.props;
 
@@ -109,6 +118,7 @@ export default class UserSignUp extends Component {
 
     };
 
+    // User creation via context.createUser with signin
     if (password === confirmPassword) {
       context.data.createUser(user)
         .then(errors => {
@@ -131,6 +141,9 @@ export default class UserSignUp extends Component {
     }
   }
 
+  /**
+   * Cancels usee signup and returns to the main page.
+   */
   cancel = () => {
     this.props.history.push('/');
   }

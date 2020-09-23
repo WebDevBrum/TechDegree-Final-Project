@@ -24,7 +24,9 @@ export default class Data {
     return fetch(url, options);
   }
 
-  // Obtains a list of courses from the database (no Auth)
+  /**
+   * Obtains a list of courses from the database (no Auth)
+   */
   async getCourses() {
     const response = await this.api('/courses', 'GET');
     if (response.status === 200) {
@@ -34,7 +36,10 @@ export default class Data {
     }
   }
 
-  // Obtains specific course details from the database (no Auth)
+  /**
+   * Obtains specific course details from the database (no Auth)
+   * @param {number} id 
+   */
   async courseDetail(id) {
     const response = await this.api(`/courses/${id}`, 'GET');
 
@@ -48,7 +53,12 @@ export default class Data {
     }
   }
 
-  // Deletes a course on the database (Auth reqd)
+  /**
+   * Deletes a course on the database (Auth reqd)
+   * @param {number} id 
+   * @param {string} emailAddress 
+   * @param {string} password 
+   */
   async deleteCourse(id, emailAddress, password) {
     const response = await this.api(`/courses/${id}`, 'DELETE', null, true, { emailAddress, password });
 
@@ -62,7 +72,12 @@ export default class Data {
     }
   }
 
-  //Creates a course on the database (Auth reqd)
+  /**
+   * 
+   * @param {object} course 
+   * @param {string} emailAddress 
+   * @param {string} password 
+   */
   async createCourse(course, emailAddress, password) {
 
     const response = await this.api(`/courses`, 'POST', course, true, { emailAddress, password });
@@ -78,7 +93,13 @@ export default class Data {
     }
   }
 
-  //Updates a course on the database , Auth reqd
+  /**
+   * Updates a course on the database , Auth reqd
+   * @param {number} id 
+   * @param {object} course 
+   * @param {string} emailAddress 
+   * @param {string} password 
+   */
   async updateCourse(id, course, emailAddress, password) {
     const response = await this.api(`/courses/${id}`, 'PUT', course, true, { emailAddress, password });
 
@@ -93,7 +114,11 @@ export default class Data {
     }
   }
 
-  // Gets a user from the database via signin (Auth reqd)
+  /**
+   * Gets a user from the database via signin (Auth reqd)
+   * @param {string} emailAddress 
+   * @param {string} password 
+   */
   async getUser(emailAddress, password) {
     const response = await this.api(`/users`, 'GET', null, true, { emailAddress, password });
 
@@ -108,7 +133,10 @@ export default class Data {
     }
   }
 
-  // Creates a new user on the database via signup (no Auth)
+  /**
+   * Creates a new user on the database via signup (no Auth)
+   * @param {object} user 
+   */
   async createUser(user) {
     const response = await this.api('/users', 'POST', user);
     if (response.status === 201) {

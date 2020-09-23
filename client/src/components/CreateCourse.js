@@ -62,6 +62,11 @@ export default class CreateCourse extends Component {
     );
   }
 
+
+  /**
+   * Listener for form value changes 
+   * This then updates component state accordingly.
+   */
   change = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -73,6 +78,11 @@ export default class CreateCourse extends Component {
     });
   }
 
+  /**
+   * Submits the form with bundled data from state and
+   * passes the data to createCourse for addition to
+   * the database.
+   */
   submit = (event) => {
     event.preventDefault();
     const { context } = this.props;
@@ -87,7 +97,9 @@ export default class CreateCourse extends Component {
     const course = {
       title, description, estimatedTime, materialsNeeded, userId
     };
-    /*Creates a course when valid info provided, info passed to api and course added to database*/
+    /**
+     * Creates a course when valid info provided, info passed to api and course added to database
+     */
     context.data.createCourse(course, emailAddress, password)
       .then(errors => {
         if (errors.length) {
@@ -103,6 +115,9 @@ export default class CreateCourse extends Component {
       });
   }
 
+  /**
+   * Cancels course creation and returns to the main page.
+   */
   cancel = (event) => {
     event.preventDefault();
     this.props.history.push('/');

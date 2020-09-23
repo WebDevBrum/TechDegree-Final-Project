@@ -9,11 +9,19 @@ export default (props) => {
     elements,
   } = props;
 
+  /**
+   * Applies the given form submit() function and clears default behaviour
+   * For use by the given form submit button.
+   */
   function handleSubmit(event) {
     event.preventDefault();
     submit();
   }
 
+  /**
+   * Applies the given form cancel() function and clears default behaviour
+   * For use by the given form cancel button.
+   */
   function handleCancel(event) {
     event.preventDefault();
     cancel();
