@@ -6,7 +6,7 @@
 <img src='readme-images/login.jpeg' width='350' height='200' alt='project preview'/>
 
 
-**Getting started**
+##Getting started##
 
 Open a terminal or command window and start the REST API application.
 
