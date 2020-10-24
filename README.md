@@ -1,4 +1,10 @@
+<img src='readme-images/treehouse.png' width='200' height='50' alt='treehouse logo'/>
+
+
 # TechDegree-Final-Project
+
+<img src='readme-images/login.jpeg' width='350' height='200' alt='project preview'/>
+
 
 Getting started
 
