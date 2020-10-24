@@ -3,6 +3,8 @@
 
 # TechDegree-Final-Project
 
+## Full stack React app
+
 <img src='readme-images/login.jpeg' width='350' height='200' alt='project preview'/>
 
 
